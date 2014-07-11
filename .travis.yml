@@ -23,4 +23,5 @@ script:
   - test -d _install || mkdir _install
   - cd _build
   - cmake -DCMAKE_INSTALL_PREFIX=../_install ..
-  - make -j4
+  - make
+  
