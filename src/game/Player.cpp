@@ -14982,6 +14982,10 @@ void Player::SaveToDB()
     DEBUG_FILTER_LOG(LOG_FILTER_PLAYER_STATS, "The value of player %s at save: ", m_name.c_str());
     outDebugStatsValues();
 
+    #ifdef ENABLE_ELUNA
+    sEluna->OnSave(this);
+    #endif
+
     CharacterDatabase.BeginTransaction();
 
     UpdateHonor();
