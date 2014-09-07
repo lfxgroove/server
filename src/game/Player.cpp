@@ -16801,6 +16801,14 @@ bool Player::BuyItemFromVendor(ObjectGuid vendorGuid, uint32 item, uint8 count, 
         return false;
     }
 
+    bool doesntMatchClass = !(pProto->AllowableClass & getClassMask());
+    bool isBindOnPickup = pProto->Bonding == BIND_WHEN_PICKED_UP;
+    if (doesntMatchClass && isBindOnPickup && !isGameMaster())
+    {
+        SendBuyError(BUY_ERR_CANT_FIND_ITEM, NULL, item, 0);
+        return false;
+    }
+
     Creature* pCreature = GetNPCIfCanInteractWith(vendorGuid, UNIT_NPC_FLAG_VENDOR);
     if (!pCreature)
     {
