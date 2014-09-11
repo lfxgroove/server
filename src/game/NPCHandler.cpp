@@ -399,6 +399,12 @@ void WorldSession::HandleGossipSelectOptionOpcode(WorldPacket& recv_data)
         DEBUG_LOG("Gossip code: %s", code.c_str());
     }
 
+    // Prevent cheating on C++ scripted menus
+    if (_player->PlayerTalkClass->GetGossipMenu().GetSenderGUID() != guid)
+        return;
+    if (gossipListId > _player->PlayerTalkClass->GetGossipMenu().MenuItemCount())
+        return;
+
     // remove fake death
     if (GetPlayer()->hasUnitState(UNIT_STAT_DIED))
         { GetPlayer()->RemoveSpellsCausingAura(SPELL_AURA_FEIGN_DEATH); }

@@ -34,6 +34,7 @@ GossipMenu::GossipMenu(WorldSession* session) : m_session(session)
 {
     m_gItems.reserve(16);                                   // can be set for max from most often sizes to speedup push_back and less memory use
     m_gMenuId = 0;
+    m_senderGuid = 0;
 }
 
 GossipMenu::~GossipMenu()
@@ -156,6 +157,8 @@ bool PlayerMenu::GossipOptionCoded(unsigned int Selection)
 
 void PlayerMenu::SendGossipMenu(uint32 TitleTextId, ObjectGuid objectGuid)
 {
+    mGossipMenu.SetSenderGUID(objectGuid);
+
     WorldPacket data(SMSG_GOSSIP_MESSAGE, (100));           // guess size
     data << ObjectGuid(objectGuid);
     data << uint32(TitleTextId);
