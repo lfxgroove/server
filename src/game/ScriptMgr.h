@@ -29,6 +29,7 @@
 #include "Policies/Singleton.h"
 #include "ObjectGuid.h"
 #include "DBCEnums.h"
+#include "QuestDef.h" /* enum QuestStatus */
 #include <ace/Atomic_Op.h>
 
 struct AreaTriggerEntry;
@@ -510,6 +511,7 @@ class ScriptMgr
         InstanceData* CreateInstanceData(Map* pMap);
 
         char const* GetScriptLibraryVersion() const;
+        bool OnQuestStatusChange(Player* pPlayer, uint32 questId, QuestStatus status);
         bool OnGossipHello(Player* pPlayer, Creature* pCreature);
         bool OnGossipHello(Player* pPlayer, GameObject* pGameObject);
         bool OnGossipSelect(Player* pPlayer, Creature* pCreature, uint32 sender, uint32 action, const char* code);

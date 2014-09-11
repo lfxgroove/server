@@ -12666,6 +12666,8 @@ void Player::SetQuestStatus(uint32 quest_id, QuestStatus status)
 
         if (q_status.uState != QUEST_NEW)
             { q_status.uState = QUEST_CHANGED; }
+
+        sScriptMgr.OnQuestStatusChange(this, quest_id, status);
     }
 
     UpdateForQuestWorldObjects();

@@ -2144,6 +2144,13 @@ bool ScriptMgr::OnQuestRewarded(Player* pPlayer, Creature* pCreature, Quest cons
     return m_pOnQuestRewarded != NULL && m_pOnQuestRewarded(pPlayer, pCreature, pQuest);
 }
 
+bool ScriptMgr::OnQuestStatusChange(Player* pPlayer, uint32 questId, QuestStatus status)
+{
+#ifdef ENABLE_ELUNA
+    DEBUG_LOG("ScriptMgr::OnQuestStatusChange(): Eluna should probably do something here");
+#endif /* ENABLE_ELUNA */
+}
+
 bool ScriptMgr::OnQuestRewarded(Player* pPlayer, GameObject* pGameObject, Quest const* pQuest)
 {
     // Used by Eluna
